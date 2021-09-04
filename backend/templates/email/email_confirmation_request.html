@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Househeld budget api - built with FastAPI & Python 3">
+	<meta name="author" content="Vanhaeren Antonius">
+
+	<title>Househeld budget api</title>
+</head>
+<body>
+    <div style=" display: flex; align-items: center; justify-content: center; flex-direction: column;">
+        <h3> Account Verification </h3>
+        <br>
+        <p>Thanks {{ body.fullname }}, for choosing ..., please 
+        click on the link below to verify your account</p> 
+
+        <a style=" padding: 1rem; border-radius: 0.5rem; font-size: 1rem; text-decoration: none; background: #0275d8; color: white;"
+			href="http://localhost:5000/api/auth/verificate-email/?token={{ body.token }}">Verify your email
+        <a>
+
+        <h4>If you did not register for ..., 
+        please kindly ignore this email and nothing will happen. Thanks<h4>
+    </div>
+</body>
+</html>

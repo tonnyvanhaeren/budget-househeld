@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+  server:
+    container_name: househeld-backend-server
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend/:/backend/
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: uvicorn app.api.server:app --reload --workers 1 --host 0.0.0.0 --port 5000
+    env_file:
+      - ./backend/.env
+    ports:
+      - 5000:5000
+    depends_on:
+      - mongo_db
+
+  mongo_db:
+    container_name: househeld-backend-mongo-db
+    image: mongo:4.2.16-rc0
+    restart: always
+    volumes:
+      - mongo_db_data:/var/lib/mongo_db/data/
+    env_file:
+      - ./backend/.env
+    ports:
+      - 27017:27017
+
+volumes:
+    mongo_db_data:
